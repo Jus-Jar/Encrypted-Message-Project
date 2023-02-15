@@ -30,29 +30,35 @@ while (1):
         
         encryptedMessage = data2.decode()
         
-        railFenceKey = 3
-        caesarCipherKey = 0
+        railFenceKey = 2 # rail fence uses 2 as minumum key.
         crackedKey = False
         
 
         recognizable_text = ["Rowley","Trinidad","Tobago","murders","Minister","Keith"]
         test = [False,False,False,False,False,False]
 
-        while (crackedKey == False) and caesarCipherKey < 127:
+        while crackedKey == False:
+            caesarCipherKey = 0
+            while (crackedKey == False) and caesarCipherKey < 127:
 
-            decryptedMessage = doubleCipherDecrypt(encryptedMessage,caesarCipherKey,railFenceKey)
+                decryptedMessage = doubleCipherDecrypt(encryptedMessage,caesarCipherKey,railFenceKey)
+                
+                for i in range(len(recognizable_text)):
+                    if recognizable_text[i] in decryptedMessage:
+                        test[i] = True
             
-            for i in range(len(recognizable_text)):
-                if recognizable_text[i] in decryptedMessage:
-                    test[i] = True
+                if test[0] == True or test[1] == True or test[2] == True or test[3] == True or test[4] == True or test[5] == True:
+                    crackedKey = True
+                    foundcaesarCipherKey = caesarCipherKey
+                    foundrailFenceKey = railFenceKey
+            
+                caesarCipherKey = caesarCipherKey + 1
         
-            if test[0] == True or test[1] == True or test[2] == True or test[3] == True or test[4] == True or test[5] == True:
-                crackedKey = True
-                foundKey = caesarCipherKey
-           
-            caesarCipherKey = caesarCipherKey + 1
+            railFenceKey = railFenceKey + 1
 
-        print("Key for Caesar Cipher found using brute Force method:" + str(foundKey))
+        print("Key for Rail Fence Cipher found using brute Force method:" + str(foundrailFenceKey))
+        print("Key for Caesar Cipher found using brute Force method:" + str(foundcaesarCipherKey))
+        
         print(decryptedMessage)
     connectionSocket.close()
 

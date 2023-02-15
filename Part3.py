@@ -1,6 +1,6 @@
 # INFO 2604 Assignment 1
 # Jared Heeralal (816030252)
-#Dillan PArmanan ()
+#Dillan Parmanan ()
 
 # Cryptoanalysis 
 from Part1 import * 
@@ -12,8 +12,8 @@ from Part1 import *
 
 filename = "Rowley.dat"
 
-recognizable_text = ["Rowley","Trinidad","Tobago","murders","Minister","Keith"]
-encrypted_sample_text = []
+# recognizable_text = ["Rowley","Trinidad","Tobago","murders","Minister","Keith"]
+# encrypted_sample_text = []
 
 # encrypt recognisable text using rail fence algorithm
 
